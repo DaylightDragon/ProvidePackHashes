@@ -9,6 +9,7 @@ import org.daylight.plugins.provideurlhashes.config.ConfigOperations;
 import org.daylight.plugins.provideurlhashes.config.UserData;
 import org.daylight.plugins.provideurlhashes.util.PackUtils;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -31,6 +32,7 @@ public class MainCommands {
     public static boolean updateHash(CommandSender sender, String[] args) {
         PackUtils.downloadPackIfNeeded(true, null);
         sender.sendMessage(ChatColor.GOLD + "Started downloading the pack to update the hash, check the console for more details");
+        sender.sendMessage(ChatColor.GOLD + "Please note that the players will need to re-join the server to see changes!");
         return true;
     }
 
@@ -38,9 +40,10 @@ public class MainCommands {
         String url = String.join("", args).replace(" ", "%20").trim().replace("\\", "");
         PackUtils.downloadPackIfNeeded(true, url);
 
-        Path serverPropertiesPath = Paths.get("server.properties");
+        File serverFolder = Bukkit.getServer().getWorldContainer();
+        Path serverPropertiesPath = serverFolder.toPath().resolve("server.properties");
         if(!Files.exists(serverPropertiesPath)) {
-            sender.sendMessage(ChatColor.RED + "Couldn't find the server.properties file to save it forever");
+            sender.sendMessage(ChatColor.RED + "Couldn't find the server.properties file to save it permanently");
             return true;
         }
 

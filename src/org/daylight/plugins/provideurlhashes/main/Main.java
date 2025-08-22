@@ -30,6 +30,12 @@ import org.daylight.plugins.provideurlhashes.util.common.SimpleLogger;
 import org.daylight.plugins.provideurlhashes.util.common.DebugModeSwitch;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Main functionality is located in:
+ * {@link PackUtils},
+ * {@link org.daylight.plugins.provideurlhashes.util.PackDownloader},
+ * {@link org.daylight.plugins.provideurlhashes.util.PackInjector}
+ */
 public class Main extends JavaPlugin implements Listener {
 	public static Plugin plugin;
 
