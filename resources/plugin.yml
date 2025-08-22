@@ -1,0 +1,21 @@
+name: ProvideUrlHashes
+main: org.daylight.plugins.provideurlhashes.main.Main
+version: 1.0.0
+api-version: 1.16
+commands:
+   urlHashesToggleSaving:
+      description: Toggle saving the hash between restarts. Manual update will be required
+      permission: op
+      usage: "Usage: urlHashesToggleSaving <on|off>"
+   urlHashesUpdateHash:
+      description: Forcefully update the pack's local hashcode
+      permission: op
+      usage: "Usage: urlHashesUpdateHash"
+   urlHashesState:
+      description: Display the current plugin's state
+      permission: op
+      usage: "Usage: urlHashesState"
+   urlHashesChangePackUrl:
+      description: Set a new pack url and update the hash
+      permission: op
+      usage: "Usage: urlHashesChangePackUrl <URL>"

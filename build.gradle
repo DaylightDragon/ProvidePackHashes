@@ -1,0 +1,82 @@
+plugins {
+	id('java')
+	id("com.github.johnrengelman.shadow") version "8.1.1"
+}
+
+group 'org.daylight.plugins.providepackhashes'
+version '1.0.0'
+
+//compileJava {
+//    sourceCompatibility = '1.8'
+//    targetCompatibility = '1.8'
+//}
+
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        name = 'papermc'
+        url = 'https://repo.papermc.io/repository/maven-public/'
+    }
+    maven {
+        name = "spigotmc"
+        url = "https://hub.spigotmc.org/nexus/content/repositories/snapshots/"
+    }
+}
+
+dependencies {
+	compileOnly 'io.papermc.paper:paper-api:1.21.1-R0.1-SNAPSHOT'
+    compileOnly("com.mojang:brigadier:1.2.9")
+    compileOnly("net.md-5:bungeecord-chat:1.20-R0.2-deprecated+build.18")
+	//compileOnly "org.spigotmc:spigot-api:1.20.6-R0.1-SNAPSHOT"
+    //implementation 'org.javatuples:javatuples:1.2'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs 'src'
+        }
+        resources {
+            srcDir 'resources' 
+        }
+    }
+}
+
+build {
+    dependsOn(shadowJar)
+}
+
+def propertiesFile = file('config.properties')
+def content = propertiesFile.text.replace('\\', '/')
+def properties = new Properties()
+properties.load(new StringReader(content))
+
+def jarFileDestinationPath = properties.getProperty('jarFileDestinationPath').replace('"', '').trim()
+
+tasks {
+	shadowJar {
+	    archiveBaseName.set("ProvidePackHashes")
+    	archiveVersion.set(version)
+    	archiveClassifier.set("") // without a suffix
+    	destinationDirectory.set(file(jarFileDestinationPath))
+    	
+		//relocate("de.tr7zw.changeme", "org.daylight.plugins.manhunt")
+	}
+
+	jar {
+		dependsOn(shadowJar)
+		
+	    //destinationDirectory.set(file(jarFileDestinationPath))
+	    //configurations.implementation.canBeResolved=true
+	    //from { configurations.implementation.collect {
+	    //  it.isDirectory() ? it : zipTree(it) } 
+	    //}
+	}
+}

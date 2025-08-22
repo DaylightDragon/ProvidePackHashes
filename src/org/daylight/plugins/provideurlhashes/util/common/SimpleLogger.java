@@ -1,0 +1,86 @@
+package org.daylight.plugins.provideurlhashes.util.common;
+
+import org.bukkit.Bukkit;
+import org.daylight.plugins.provideurlhashes.main.Main;
+
+import java.util.logging.Level;
+
+public class SimpleLogger {
+	public static String pluginName = "ProvideUrlHashes";
+	public static String color = ""; // + ChatColor.WHITE;
+	public static boolean debugOutputEnabled = true;
+	
+	public static void log(Object o) {
+		if(o!=null) {
+			log(o.toString());
+		} else {
+			log("null");
+		}
+	}
+	
+	public static void log(String s) {
+		Main.plugin.getLogger().info(s);
+	}
+	
+	public static void log(int s) {
+		log(s + "");
+	}
+	
+	public static void log(boolean s) {
+		log(s + "");
+	}
+	
+	public static void log(double s) {
+		log(s + "");
+	}
+	
+	public static void log(float s) {
+		log(s + "");
+	}
+	
+	public static void log(char s) {
+		log(s + "");
+	}
+	
+	public static void log(short s) {
+		log(s + "");
+	}
+	
+	public static void debug(Object o) {
+		if(o!=null) {
+			debug(o.toString());
+		} else {
+			debug("null");
+		}
+	}
+	
+	public static void debug(String s) {
+		if(!debugOutputEnabled) return;
+		s = color + "[DEBUG] " + s;
+		Main.plugin.getLogger().log(Level.ALL, s);
+	}
+	
+	public static void debug(int s) {
+		debug(s + "");
+	}
+	
+	public static void debug(boolean s) {
+		debug(s + "");
+	}
+	
+	public static void debug(double s) {
+		debug(s + "");
+	}
+	
+	public static void debug(float s) {
+		debug(s + "");
+	}
+	
+	public static void debug(char s) {
+		debug(s + "");
+	}
+	
+	public static void debug(short s) {
+		debug(s + "");
+	}
+}
