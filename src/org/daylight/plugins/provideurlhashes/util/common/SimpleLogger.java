@@ -19,7 +19,8 @@ public class SimpleLogger {
 	}
 	
 	public static void log(String s) {
-		Main.plugin.getLogger().info(s);
+		s = color + "[" + pluginName + "] " + s;
+        Bukkit.getConsoleSender().sendMessage(s);
 	}
 	
 	public static void log(int s) {
@@ -56,8 +57,8 @@ public class SimpleLogger {
 	
 	public static void debug(String s) {
 		if(!debugOutputEnabled) return;
-		s = color + "[DEBUG] " + s;
-		Main.plugin.getLogger().log(Level.ALL, s);
+		s = color + "[" + pluginName + " DEBUG] " + s;
+		Bukkit.getConsoleSender().sendMessage(s);
 	}
 	
 	public static void debug(int s) {

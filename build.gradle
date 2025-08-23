@@ -31,9 +31,9 @@ repositories {
 }
 
 dependencies {
-	compileOnly 'io.papermc.paper:paper-api:1.21.1-R0.1-SNAPSHOT'
+	compileOnly 'io.papermc.paper:paper-api:1.21-R0.1-SNAPSHOT'
     compileOnly("com.mojang:brigadier:1.2.9")
-    compileOnly("net.md-5:bungeecord-chat:1.20-R0.2-deprecated+build.18")
+    compileOnly("net.md-5:bungeecord-chat:1.21-R0.1-SNAPSHOT")
 	//compileOnly "org.spigotmc:spigot-api:1.20.6-R0.1-SNAPSHOT"
     //implementation 'org.javatuples:javatuples:1.2'
 }

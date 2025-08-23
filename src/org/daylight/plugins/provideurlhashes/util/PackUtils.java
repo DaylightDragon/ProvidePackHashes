@@ -1,10 +1,12 @@
 package org.daylight.plugins.provideurlhashes.util;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.packs.ResourcePack;
 import org.daylight.plugins.provideurlhashes.config.UserData;
 import org.daylight.plugins.provideurlhashes.main.Main;
+import org.daylight.plugins.provideurlhashes.util.common.SimpleLogger;
 import org.daylight.plugins.provideurlhashes.util.common.Stash;
 
 import java.net.URI;
@@ -32,7 +34,7 @@ public class PackUtils {
         String url = resourcePack.getUrl();
         if(urlText != null) url = urlText;
 
-        Main.plugin.getLogger().info("Downloading the pack");
+        SimpleLogger.log(ChatColor.GRAY + "Downloading the pack...");
         PackDownloader.downloadWithHash(Main.getInstance(), sender, resourcePack.getId(), url, 262144000);
     }
 
