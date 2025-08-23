@@ -19,7 +19,7 @@ public class MainEventListener implements Listener {
 	@EventHandler
     public void onPackDownloaded(PackDownloadedEvent event) {
         if (event.getPackId() != null) {
-            PackInjector.injectPackInServer(event.getPackId(), event.getPackUri(), event.getPackHash(), Bukkit.isResourcePackRequired());
+            PackInjector.injectPackInServer(event.getSenderInitiator(), event.getPackId(), event.getPackUri(), event.getPackHash(), Bukkit.isResourcePackRequired());
             UserData.lastId = event.getPackId();
             UserData.lastUri = URI.create(event.getPackUri().replace("\\", ""));
             UserData.lastHash = HashCode.fromString(event.getPackHash());

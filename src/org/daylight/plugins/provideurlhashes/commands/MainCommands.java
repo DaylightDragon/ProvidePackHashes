@@ -30,15 +30,15 @@ public class MainCommands {
     }
 
     public static boolean updateHash(CommandSender sender, String[] args) {
-        PackUtils.downloadPackIfNeeded(true, null);
-        sender.sendMessage(ChatColor.GOLD + "Started downloading the pack to update the hash, check the console for more details");
+        PackUtils.downloadPackIfNeeded(sender, true, null);
+        sender.sendMessage(ChatColor.GOLD + "Started downloading the pack to update the hash...");
         sender.sendMessage(ChatColor.GOLD + "Please note that the players will need to re-join the server to see changes!");
         return true;
     }
 
     public static boolean setNewPackUrl(CommandSender sender, String[] args) {
         String url = String.join("", args).replace(" ", "%20").trim().replace("\\", "");
-        PackUtils.downloadPackIfNeeded(true, url);
+        PackUtils.downloadPackIfNeeded(sender, true, url);
 
         File serverFolder = Bukkit.getServer().getWorldContainer();
         Path serverPropertiesPath = serverFolder.toPath().resolve("server.properties");
@@ -64,7 +64,7 @@ public class MainCommands {
             return false;
         }
 
-        sender.sendMessage(ChatColor.GOLD + "Started downloading the pack to update the hash, check console for more details");
+        sender.sendMessage(ChatColor.GOLD + "Started downloading the pack to update the hash...");
         sender.sendMessage(ChatColor.GOLD + "Please note that the players will need to re-join the server to see changes!");
         return true;
     }
@@ -74,6 +74,7 @@ public class MainCommands {
         sender.sendMessage("Last known Pack's ID: " + ChatColor.GREEN + toStringOrNone(UserData.lastId));
         sender.sendMessage("Last known Pack's URI: " + ChatColor.GREEN + toStringOrNone(UserData.lastUri));
         sender.sendMessage("Last known Pack's Hash: " + ChatColor.GREEN + toStringOrNone(UserData.lastHash));
+        sender.sendMessage(ChatColor.GOLD + "\nData Saving: " + (ConfigData.saveData ? ChatColor.GREEN + "Enabled" : ChatColor.RED + "Disabled"));
         return true;
     }
 

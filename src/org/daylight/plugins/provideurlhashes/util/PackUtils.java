@@ -1,9 +1,11 @@
 package org.daylight.plugins.provideurlhashes.util;
 
 import org.bukkit.Bukkit;
+import org.bukkit.command.CommandSender;
 import org.bukkit.packs.ResourcePack;
 import org.daylight.plugins.provideurlhashes.config.UserData;
 import org.daylight.plugins.provideurlhashes.main.Main;
+import org.daylight.plugins.provideurlhashes.util.common.Stash;
 
 import java.net.URI;
 
@@ -12,7 +14,7 @@ import java.net.URI;
  */
 public class PackUtils {
     public static void downloadPackIfNeeded() {
-        downloadPackIfNeeded(false, null);
+        downloadPackIfNeeded(null, false, null);
     }
 
     /**
@@ -20,7 +22,7 @@ public class PackUtils {
      * @param bypassCheck Whether to skip checks and download anyway
      * @param urlText A specified URL to download from
      */
-    public static void downloadPackIfNeeded(boolean bypassCheck, String urlText) {
+    public static void downloadPackIfNeeded(CommandSender sender, boolean bypassCheck, String urlText) {
         if(!bypassCheck && !checkNeededToUpdate()) {
             injectPackDataFromSaved();
             return;
@@ -31,12 +33,12 @@ public class PackUtils {
         if(urlText != null) url = urlText;
 
         Main.plugin.getLogger().info("Downloading the pack");
-        PackDownloader.downloadWithHash(Main.getInstance(), resourcePack.getId(), url, 262144000);
+        PackDownloader.downloadWithHash(Main.getInstance(), sender, resourcePack.getId(), url, 262144000);
     }
 
 
     private static void injectPackDataFromSaved() {
-        PackInjector.injectPackInServer(UserData.lastId, UserData.lastUri.toString(), UserData.lastHash.toString(), Bukkit.isResourcePackRequired());
+        PackInjector.injectPackInServer(null, UserData.lastId, UserData.lastUri.toString(), UserData.lastHash.toString(), Bukkit.isResourcePackRequired());
     }
 
     /**

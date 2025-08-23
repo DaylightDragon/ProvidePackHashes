@@ -125,7 +125,7 @@ public class Main extends JavaPlugin implements Listener {
 	}
 	
 	private void announceFinishedInitialization() {
-		log(ChatColor.GREEN + "Provide Pack Hashes" + ChatColor.RESET + " plugin has been enabled!");
+		Bukkit.getConsoleSender().sendMessage("[" + SimpleLogger.pluginName + "] " +ChatColor.GREEN + "Provide Pack Hashes" + ChatColor.RESET + " plugin has been enabled!");
 		if(SimpleLogger.debugOutputEnabled) debug(ChatColor.AQUA + "Debug mode is enabled");
 	}
 }
